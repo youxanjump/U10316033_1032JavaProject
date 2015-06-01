@@ -1,0 +1,53 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.*;
+
+public class guessBox extends JFrame{
+	ImageIcon picture1 = new ImageIcon("4.png");
+	ImageIcon picture2 = new ImageIcon("1.png");
+	ImageIcon picture3 = new ImageIcon("5.png");
+	ImageIcon picture4 = new ImageIcon("7.png");
+	
+	int[] deck = new int[3];
+	
+	
+	JLabel show;
+	JLabel start;
+	
+	JPanel initial = new JPanel();
+	JPanel change = new JPanel();
+	
+	JButton jbtChoose = new JButton("Choose");
+	
+	guessBox(){
+		ImageIcon[] pic = new ImageIcon[3];
+		start = new JLabel(picture1);
+		initial.add(start);
+		
+		change.add(jbtChoose, new FlowLayout(FlowLayout.CENTER));
+	
+		add(initial, BorderLayout.CENTER);
+		add(change, BorderLayout.SOUTH);
+		
+		jbtChoose.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				int i = (int)(Math.random() * 3) ;
+				
+				show.setIcon(pic(deck[i]));
+				
+				initial.repaint();
+			}
+		});
+	}
+
+	public static void main(String[] args){
+		JFrame frame = new guessBox();
+		frame.setTitle("U10316033");
+		frame.setLocationRelativeTo(null); // Center the frame
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(300, 350);
+		frame.setVisible(true);
+	}
+}
